@@ -1,6 +1,7 @@
 import { useState } from "react"
 import React from "react";
 import '../Component/Instagram.css'
+import Footer from "./Footer";
 
 
 function InSignup(){
@@ -71,17 +72,17 @@ const[userData, setUserData] = useState({name:'', email:'', password: ''});
                 </form>
             </div>
             <div className="login-text">
-                <h4>Have an account? Log in</h4>
+                <h4>Have an account? <a href="">Log in</a> </h4>
             </div>
             <div>
-                <p>Get the app.</p>
+                <p></p>
             </div>
             {/* <div>
                 <img src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Klz.png" alt="" />
                 <img src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png" alt="" />
             </div> */}
 
-
+         <Footer/>
         </div>
 
     )

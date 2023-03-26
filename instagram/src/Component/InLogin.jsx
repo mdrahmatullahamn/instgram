@@ -1,32 +1,34 @@
 import { useState } from "react";
 import React from "react";
+import { Routes } from "react-router-dom";
+import Footer from "./Footer";
 function InLogin() {
-    const[dataVL, setFormData] =useState({email:'', password:'' });
-    function submit(e){
+    const [dataVL, setFormData] = useState({ email: '', password: '' });
+    function submit(e) {
         var datFromLS = JSON.parse(localStorage.getItem("instaUserid"))
-        var flag=false;
-        for(var i=0; i<datFromLS.length; i++){
-            if(datFromLS[i].email === dataVL.email && datFromLS[i].password === dataVL.password){
-                flag =true;
+        var flag = false;
+        for (var i = 0; i < datFromLS.length; i++) {
+            if (datFromLS[i].email === dataVL.email && datFromLS[i].password === dataVL.password) {
+                flag = true;
             }
         }
-        if(flag===true){
-            localStorage.setItem("current-prsent-User",JSON.stringify(dataVL.email)) ;
-            setFormData({email:'',password:''});
+        if (flag === true) {
+            localStorage.setItem("current-prsent-User", JSON.stringify(dataVL.email));
+            setFormData({ email: '', password: '' });
             // var user = {};
             // user["current-user"] = dataVL;  
             alert("Log in sucessful");
         }
-        else{
-            setFormData({email:'',password:''});
+        else {
+            setFormData({ email: '', password: '' });
             alert("Please check email or password");
         }
-        
+
     }
-    function fatchData(e){
+    function fatchData(e) {
         var value = e.target.value;
         var name = e.target.name;
-        setFormData({...dataVL, [name]:value});
+        setFormData({ ...dataVL, [name]: value });
 
     }
     return (
@@ -41,7 +43,7 @@ function InLogin() {
 
                 </div>
 
-                <form onSubmit={(e)=>submit()} >
+                <form onSubmit={(e) => submit()} >
                     <input type="email" name="email" placeholder="Email" onChange={(e) => { fatchData(e) }} /> <br />
                     <input type="password" placeholder="password" name="password" onChange={(e) => { fatchData(e) }} />
                     <button className="butn3">Sumbit</button>
@@ -52,8 +54,9 @@ function InLogin() {
                 <p className="forg"><a href="">forgetpassword?</a></p>
             </div>
 
-
+    <Footer/>
         </div>
+        
     )
 }
 export default InLogin;
