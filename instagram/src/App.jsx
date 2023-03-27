@@ -6,6 +6,7 @@ import InLogin from './Component/InLogin';
 import Sidebar  from './Component/Sidebar'
 import AddPost from './Component/AddPost';
 import Footer from './Component/Footer';
+import Profile from './Component/Profile';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route excat path='/signup' element={<InSignup/>} />
         <Route excat path='/post' element={<AddPost/>}/>
         <Route excat path='/footer' element={<Footer/>}/>
+        <Route excat path='/profile' element={<Profile/>} />
         </Routes>
 
       </div>
