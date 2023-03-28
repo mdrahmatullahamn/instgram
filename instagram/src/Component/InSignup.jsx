@@ -1,46 +1,92 @@
-import { useState } from "react"
-import React from "react";
-import '../Component/Instagram.css'
+// import { useState } from "react"
+// import React from "react";
+// import '../Component/Instagram.css'
+// import Footer from "./Footer";
+
+
+// function InSignup(){
+// const[userData, setUserData] = useState({name:'', email:'', password: ''});
+
+//     function submit(e) {
+//         e.preventDefault();
+
+//         var dataFromLs = JSON.parse(localStorage.getItem("instaUserid")) || [];
+
+//         var flag = false;
+//         for (var i = 0; i < dataFromLs.length; i++) {
+//             if (dataFromLs[i].email === userData.email) {
+//                 flag = true;
+//             }
+//         }
+//         if (flag=== true) {
+//             setUserData({ ...userData, ['email']: '' });
+//              alert("email already exsited");
+//         }
+//         else if (userData.password.length < 8) {
+//             setUserData({ ...userData, ['password']: '' });
+//             alert("password must be 8 characters");
+//         }
+//         else {
+//             dataFromLs.push(userData);
+//             localStorage.setItem("instaUserid", JSON.stringify(dataFromLs));
+//             setUserData({ name: '', email: '', password: '' });
+//             alert("Registration done");
+//         }
+
+//     }
+//      function featchData(e){
+//         var value =e.target.value;
+//         var name = e.target.name;
+
+//         setUserData({...userData, [name]:value});
+
+//     }
+import { useState } from "react";
+import "./Instagram.css";
+import { useNavigate } from "react-router-dom";
+// import toast  from "react-hot-toast";
 import Footer from "./Footer";
 
+function InSignup() {
+  const[userData, setUserData] =useState({email:'',name:'',username:'',password:''});
+  const route =useNavigate();
 
-function InSignup(){
-const[userData, setUserData] = useState({name:'', email:'', password: ''});
+  function submit(e){
+    e.preventDefault();
 
-    function submit(e) {
-        e.preventDefault();
 
-        var dataFromLs = JSON.parse(localStorage.getItem("instaUserid")) || [];
+    var dataFromLs =JSON.parse(localStorage.getItem("instaUserid")) || [];
+    var flag = false;
 
-        var flag = false;
-        for (var i = 0; i < dataFromLs.length; i++) {
-            if (dataFromLs[i].email === userData.email) {
-                flag = true;
-            }
-        }
-        if (flag=== true) {
-            setUserData({ ...userData, ['email']: '' });
-             alert("email already exsited");
-        }
-        else if (userData.password.length < 8) {
-            setUserData({ ...userData, ['password']: '' });
-            alert("password must be 8 characters");
-        }
-        else {
-            dataFromLs.push(userData);
-            localStorage.setItem("instaUserid", JSON.stringify(dataFromLs));
-            setUserData({ name: '', email: '', password: '' });
-            alert("Registration done");
-        }
-
+    for(var i=0; i<dataFromLs.length; i++){
+      if(dataFromLs[i].email === userData.email){
+        flag =true;
+      }
     }
-     function featchData(e){
-        var value =e.target.value;
-        var name = e.target.name;
 
-        setUserData({...userData, [name]:value});
-
+    if(flag){
+      setUserData({...userData, email:''});
+      alert("Email already Present");
     }
+    else if(userData.password.length <8){
+      setUserData({...userData, password:''})
+      alert("password should be of 8 characters");
+    }
+    else{
+      dataFromLs.push(userData);
+      localStorage.setItem("instaUserid",JSON.stringify(dataFromLs));
+      setUserData({email:'',name:'',username:'',password:''});
+      route('/login');
+      alert("Signup Scucessful");
+    }
+  }
+
+  function featchData(e){
+    var name= e.target.name;
+    var value= e.target.value;
+
+    setUserData({...userData, [name]:value});
+  }
 
     return (
         <div className="full-page">

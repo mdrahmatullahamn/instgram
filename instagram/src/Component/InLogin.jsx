@@ -1,36 +1,101 @@
-import { useState } from "react";
-import React from "react";
-import { Routes } from "react-router-dom";
+// import { useState } from "react";
+// import React from "react";
+// import { Routes } from "react-router-dom";
+// import Footer from "./Footer";
+// function InLogin() {
+//     const [dataVL, setFormData] = useState({ email: '', password: '' });
+//     function submit(e) {
+//         var datFromLS = JSON.parse(localStorage.getItem("instaUserid"))
+//         var flag = false;
+//         for (var i = 0; i < datFromLS.length; i++) {
+//             if (datFromLS[i].email === dataVL.email && datFromLS[i].password === dataVL.password) {
+//                 flag = true;
+//             }
+//         }
+//         // if (flag === true) {
+//         //     localStorage.setItem("current-prsent-User", JSON.stringify(dataVL.email));
+//         //     setFormData({ email: '', password: '' });
+//         //     // var user = {};
+//         //     // user["current-user"] = dataVL;  
+//         //     alert("Log in sucessful");
+//         // }
+//         if (flag) {
+//             localStorage.setItem(
+//               "current-prsent-user",
+//               JSON.stringify({
+//                 currentEmail: formData.email,
+//                 currentUserName: storeName,
+//               })
+
+//             );
+//               setFormData({ email: "", password: "" });
+//             //   router("/");
+//               alert("Log in sucessful");
+//             else {
+//             setFormData({ email: '', password: '' });
+//             alert("Please check email or password");
+//         }
+
+//     }
+//     function fatchData(e) {
+//         var value = e.target.value;
+//         var name = e.target.name;
+//         setFormData({ ...dataVL, [name]: value });
+
+//     }
+import "./Instagram.css";
 import Footer from "./Footer";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+// import { toast } from "react-hot-toast";
+
 function InLogin() {
-    const [dataVL, setFormData] = useState({ email: '', password: '' });
-    function submit(e) {
-        var datFromLS = JSON.parse(localStorage.getItem("instaUserid"))
-        var flag = false;
-        for (var i = 0; i < datFromLS.length; i++) {
-            if (datFromLS[i].email === dataVL.email && datFromLS[i].password === dataVL.password) {
-                flag = true;
-            }
-        }
-        if (flag === true) {
-            localStorage.setItem("current-prsent-User", JSON.stringify(dataVL.email));
-            setFormData({ email: '', password: '' });
-            // var user = {};
-            // user["current-user"] = dataVL;  
-            alert("Log in sucessful");
-        }
-        else {
-            setFormData({ email: '', password: '' });
-            alert("Please check email or password");
-        }
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const router = useNavigate();
 
-    }
-    function fatchData(e) {
-        var value = e.target.value;
-        var name = e.target.name;
-        setFormData({ ...dataVL, [name]: value });
 
+  function submit() {
+    // e.preventDefault();
+
+    var dataFromLs = JSON.parse(localStorage.getItem("instaUserid"));
+
+    var flag = false;
+    var storeName ;
+   
+    for (var i = 0; i < dataFromLs.length; i++) {
+      if (
+        dataFromLs[i].email === formData.email &&
+        dataFromLs[i].password === formData.password
+      ) {
+        flag = true;
+        storeName = dataFromLs[i].name;
+      }
     }
+   
+    if (flag) {
+      localStorage.setItem(
+        "current-prsent-user",
+        JSON.stringify({
+          currentEmail: formData.email,
+          currentUserName: storeName,
+        })
+      );
+      
+      setFormData({ email: "", password: "" });
+      router("/");
+      alert("Log in sucessful");
+    } else {
+      setFormData({ email: "", password: "" });
+      alert("Please check email or password");
+    }
+  }
+
+  function fatchData(e) {
+    var value = e.target.value;
+    var name = e.target.name;
+    // console.log(name,value) ;
+    setFormData({ ...formData, [name]: value });
+  }
     return (
         <div className="full-page">
             <div className="full-page21">

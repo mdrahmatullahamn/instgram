@@ -7,6 +7,7 @@ import Sidebar  from './Component/Sidebar'
 import AddPost from './Component/AddPost';
 import Footer from './Component/Footer';
 import Profile from './Component/Profile';
+import HomePage from './Component/HomePage';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route excat path='/post' element={<AddPost/>}/>
         <Route excat path='/footer' element={<Footer/>}/>
         <Route excat path='/profile' element={<Profile/>} />
+        <Route excat path='/Homepage' element={<HomePage/>}/>
         </Routes>
 
       </div>
